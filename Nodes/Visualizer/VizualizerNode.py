@@ -1,3 +1,5 @@
+import random
+
 import caracal as cr
 import numpy as np
 import cv2
@@ -12,9 +14,9 @@ class Vizualizer(cr.Node):
     def input_batch(self, msgs):
         for frame, rectangles in zip(msgs.value[0].value, msgs.value[1].value):
             for rect in rectangles[1]:
-                if len(rect):
+                if len(rect) and rectangles[0] == frame[0]:
                     (startX, startY, endX, endY) = rect.astype("int")
-                    cv2.rectangle(frame[1], (startX, startY), (endX, endY), 10, 2)
+                    cv2.rectangle(frame[1], (startX, startY), (endX, endY), (random.randint(0, 255),  random.randint(0, 255),  random.randint(0, 255)), 2)
             cv2.imshow("stream", frame[1])
             cv2.waitKey(33)
 

@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
         cam.camera_url = 'rtsp://admin:admin@77.233.1.7:554/cam/realmonitor?channel=1&subtype=0'
         cam.camera_name = "cam_1"
-        cam.batch_length = 30
+        cam.batch_length = 2
         cam.image_width = 360
         cam.image_height = 360
 
