@@ -1,16 +1,30 @@
-# This is a sample Python script.
+from caracal import (
+    cara_types,
+    Event,
+    handler,
+    Node,
+    ProjectInfo,
+    Property,
+    Session,
+)
+import logging
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from Nodes import Camera, Detector, Vizualizer
 
+if __name__ == "__main__":
+    with Session(server_port=2020,) as session:
+        # logging.basicConfig(level=logging.DEBUG)
+        detetor = Detector()
+        cam = Camera()
+        visualizer = Vizualizer()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+        cam.camera_url = 'rtsp://admin:admin@77.233.1.7:554/cam/realmonitor?channel=1&subtype=0'
+        cam.camera_name = "cam_1"
+        cam.batch_length = 30
+        cam.image_width = 360
+        cam.image_height = 360
 
+        detetor.input_image_batch.connect(cam.image_batch)
+        visualizer.input_batch.connect(cam.image_batch, detetor.output_rect)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        session.run()

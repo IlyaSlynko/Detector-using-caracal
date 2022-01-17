@@ -25,7 +25,6 @@ class Camera(cr.Node):
         id_batch = 0
         while True:
             batch = []
-            a = range(1, self.batch_length, 1)
             for id_frame_in_batch in range(1, self.batch_length, 1):
                 ret, frame = camera.read()
                 if ret != -1:

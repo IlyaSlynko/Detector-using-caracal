@@ -1,5 +1,5 @@
 antlr4-python3-runtime==4.9.3
-caracal @ git+https://github.com/caracalai/caracal.git
+caracal @ git+https://github.com/caracalai/caracal.git@main
 numpy==1.22.0
 opencv-python==4.5.5.62
 Pillow==9.0.0
